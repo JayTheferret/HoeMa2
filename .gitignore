@@ -336,3 +336,6 @@ ASALocalRun/
 #own
 
 *.vcxproj
+*.vcxproj.*
+*/*.vcxproj
+*/*.vcxproj.*
