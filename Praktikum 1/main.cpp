@@ -10,9 +10,9 @@ int main() {
 
 	CMyVektor test1(3);
 
-	test1.set_Component(0, 1);
-	test1.set_Component(1, 2);
-	test1.set_Component(2, 3);
+	/*test1.set_component(0, 1);
+	test1.set_component(1, 2);
+	test1.set_component(2, 3);
 
 	test1.print_vector(test1);
 	std::cout << std::endl;
@@ -22,9 +22,9 @@ int main() {
 
 	CMyVektor test2(3);
 
-	test2.set_Component(0, 4);
-	test2.set_Component(1, 5);
-	test2.set_Component(2, 6);
+	test2.set_component(0, 4);
+	test2.set_component(1, 5);
+	test2.set_component(2, 6);
 
 	test2.print_vector(test2);
 	std::cout << std::endl;
@@ -46,7 +46,38 @@ int main() {
 	CMyVektor mult(3);
 	mult = 2 * test2;
 
-	mult.print_vector(mult);
+	mult.print_vector(mult);*/
+
+	//------------------------
+	/*
+	CMyVektor x(3);
+	x.set_component(0, 0);
+	x.set_component(1, 0);
+	x.set_component(2, 0);
+
+	g_verfahren(x, gvx, 0.1);
+	*/
+	//------------------------
+
+	CMyVektor x(2);
+	x.set_component(0, 0.2);
+	x.set_component(1, -2.1);
+
+	g_verfahren(x, fvx);
+		
+	
+	//std::cout << "x = ";
+	//x.print_vector(x);
+
+	//CMyVektor x_erg(3);
+	//x_erg = gradient(x, funktion);
+
+	//std::cout << "grad g(x) = ";
+	//x_erg.print_vector(x_erg);
+
+	//x_erg = g_verfahren(x_erg, funktion);
+	//std::cout << "x_n = ";
+	//x_erg.print_vector(x_erg);
 
 
 	return 0;
