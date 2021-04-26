@@ -81,6 +81,8 @@ double gvx(CMyVektor x)
 
 	//pow(base,exp)
 	return (-(2* pow((x1), 2) - (2 * (x1*x2)) + pow(x2, 2) + pow(x3, 2) - (2 * x1) - (4 * x3)));
+
+	//mult schneller als pow -> pow(2,2) = 2*2
 }
 
 double fvx(CMyVektor x)
@@ -106,15 +108,17 @@ CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x))
 		temp.set_component(i, temp.get_component(i) + h); //vektor an stelle i ändern in i+h
 
 		grad.set_component(i, (funktion(temp) - funktion(x)) / h);
+
+		//temp am ende zurücksetzen auf x -> kein neuer vektor pro itteration
 	}
 
 	return grad;
 }
 
-CMyVektor g_verfahren(CMyVektor x, double(*funktion)(CMyVektor x),double lambda)
+CMyVektor g_verfahren(CMyVektor x, double(*funktion)(CMyVektor x),double lambda)//lambda= 0.1 kann auch in header
 {
 	//double lambda = 1; //->default
-	//double lambda = 0.1;
+	//double lambda = 0.1;   
 
 	CMyVektor x_n(x.get_dimension()); //nächster zu x -> xn+1
 
@@ -124,7 +128,6 @@ CMyVektor g_verfahren(CMyVektor x, double(*funktion)(CMyVektor x),double lambda)
 
 	do {
 		//Ausgabe
-
 		std::cout	<< "Schritt " << steps << ":" << std::endl << "     x = ";
 		x.print_vector(x);
 		std::cout	<< "     lambda = " << lambda << std::endl;
@@ -144,21 +147,20 @@ CMyVektor g_verfahren(CMyVektor x, double(*funktion)(CMyVektor x),double lambda)
 			do {
 				lambda = lambda / 2; //Schrittweite halbieren
 				std::cout << "     halbiere Schrittweite (lambda = " << lambda << "):" << std::endl;
-				x_n = x + (lambda * gradient(x, funktion));
+				x_n = x + (lambda * gradient(x, funktion)); 
 
 				std::cout << "     x_neu = ";
 				x_n.print_vector(x_n);
 				std::cout << "     f(x_neu) = " << funktion(x_n) << std::endl;
 				std::cout << std::endl;
 				
-			} while (funktion(x_n) <= funktion(x));
+			} while (funktion(x_n) <= funktion(x)); //funktion x vor schleife einmal in variable packen -> nur einmal berechnen
 
 
 		}
 
 		//3.verdoppeln wenn größer als aktuell (dann mit größerem arbeiten)
 		else {
-
 			std::cout << "     Test mit doppelter Schrittweite (lambda = " << lambda*2 << "): " << std::endl;
 
 			CMyVektor x_test(x.get_dimension());
@@ -185,7 +187,7 @@ CMyVektor g_verfahren(CMyVektor x, double(*funktion)(CMyVektor x),double lambda)
 
 		std::cout << std::endl;
 
-	} while (steps < 25 && !(gradient(x_n, funktion).vector_length(gradient(x_n, funktion)) <= pow(10, -5)));
+	} while (steps < 25 && !(gradient(x_n, funktion).vector_length(gradient(x_n, funktion)) <= pow(10, -5))); //pow in variable -> weniger rechenarbeit!
 
 	if (steps >= 25) {
 		std::cout << "Ende wegen Schrittanzahl = 25 bei " << std::endl;
@@ -194,14 +196,13 @@ CMyVektor g_verfahren(CMyVektor x, double(*funktion)(CMyVektor x),double lambda)
 		std::cout << "Ende wegen ||grad f(x)||<1e-5 bei" << std::endl;
 	}
 
-
-	std::cout << "     x = ";
+	std::cout	<< "     x = ";
 	x.print_vector(x);
-	std::cout << "     lambda = " << lambda << std::endl;
-	std::cout << "     f(x) = " << funktion(x) << std::endl
-		<< "     grad f(x) = ";
+	std::cout	<< "     lambda = " << lambda << std::endl;
+	std::cout	<< "     f(x) = " << funktion(x) << std::endl
+				<< "     grad f(x) = ";
 	gradient(x, funktion).print_vector(gradient(x, funktion));
-	std::cout << "     ||grad f(x)|| = " << gradient(x, funktion).vector_length(gradient(x, funktion)) << std::endl;
+	std::cout	<< "     ||grad f(x)|| = " << gradient(x, funktion).vector_length(gradient(x, funktion)) << std::endl;
 
 	return x_n;
 }

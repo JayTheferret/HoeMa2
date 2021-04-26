@@ -64,6 +64,9 @@ int main() {
 	x.set_component(1, -2.1);
 
 	g_verfahren(x, fvx);
+
+	//double test = 1.00e-5;
+	//std::cout << test;
 		
 	
 	//std::cout << "x = ";
