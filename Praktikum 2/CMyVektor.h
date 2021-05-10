@@ -31,7 +31,8 @@ CMyVektor operator*(double lambda, CMyVektor a); //Vektor multiplikation -> uebe
 double fvx(CMyVektor x);
 double gvx(CMyVektor x);
 
-CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x));
+CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x),double h); //fuer Praktikum 2, h als variable
+CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x));// h = pow(10, -8)
 
 //Aufgabe 3
 

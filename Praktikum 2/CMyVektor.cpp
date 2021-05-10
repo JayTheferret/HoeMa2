@@ -95,11 +95,11 @@ double fvx(CMyVektor x)
 	return sin(x1*y) + sin(x1) + cos(y);
 }
 
-CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x))
+CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x),double h)
 {
 	CMyVektor grad(x.get_dimension());
 
-	double h = pow(10, -8);
+	//double h = pow(10, -8);
 
 	for (int i = 0; i < x.get_dimension(); i++) {
 
@@ -113,6 +113,10 @@ CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x))
 	}
 
 	return grad;
+}
+
+CMyVektor gradient(CMyVektor x, double(*funktion)(CMyVektor x)) {
+	return gradient(x, funktion, pow(10, -8));
 }
 
 CMyVektor g_verfahren(CMyVektor x, double(*funktion)(CMyVektor x), double lambda)//lambda= 0.1 kann auch in header
