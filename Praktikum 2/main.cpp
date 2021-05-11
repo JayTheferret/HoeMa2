@@ -49,21 +49,21 @@ int main() {
 	//mult.print_vector(mult);
 
 	////Beispiel Aufgabe 2
-	//CMyVektor x(4);
-	//x.set_component(0, 1);
-	//x.set_component(1, 2);
-	//x.set_component(2, 0);
-	//x.set_component(3, 3);
+	/*CMyVektor x(4);
+	x.set_component(0, 1);
+	x.set_component(1, 2);
+	x.set_component(2, 0);
+	x.set_component(3, 3);
 
-	//CMyMatrix j_matrix = jacobi(x, f_1);
-	//j_matrix.print_matrix(j_matrix);
-
+	CMyMatrix j_matrix = jacobi(x, f_1);
+	j_matrix.print_matrix(j_matrix);
+*/
+	//aufgabe 3
 	CMyVektor x(2);
 	x.set_component(0, 1);
 	x.set_component(1, 1);
 
 	newton_verfahren(x, f_2);
-
 
 
 

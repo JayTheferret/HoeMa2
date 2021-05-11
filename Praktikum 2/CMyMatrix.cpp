@@ -90,11 +90,13 @@ CMyMatrix jacobi(CMyVektor x, CMyVektor(*funktion)(CMyVektor x))
 	int funktion_d = funktion(x).get_dimension();
 	int x_d = x.get_dimension();
 
-	CMyMatrix jacobi_m(funktion_d,x.get_dimension()); //matrix mit m = funktion ,n = vektor
+	CMyMatrix jacobi_m(funktion_d, x_d); //matrix mit m = funktion ,n = vektor
+
+	CMyVektor x_h = x; //Kopie von x erstellen
 
 	for (int i = 0; i < funktion_d; i++) { //pro funktion in Vektor
 		for (int j = 0; j < x_d; j++) { //für jedes x
-			CMyVektor x_h = x; //Kopie von x erstellen
+			x_h = x; //x_h immer auf x zuruecksetzen
 			x_h.set_component(j, x_h.get_component(j) + h); //aktuelles x in x_h +h
 
 			jacobi_m.set_component(i, j, (funktion(x_h).get_component(i) - funktion(x).get_component(i)) / h); //einsetzen in funktion(en)-> nur interessantes ergebnis uebernehmen
