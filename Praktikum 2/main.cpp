@@ -38,15 +38,15 @@ int main() {
 	//m_1.print_matrix(m_1.invers(m_1));
 	////m_1.invers(m_1);
 
-	//std::cout << "Matrix Vektor Multiplikation: ";
+	/*std::cout << "Matrix Vektor Multiplikation: ";
 
-	//CMyVektor v_1(2);
-	//v_1.set_component(0, 1);
-	//v_1.set_component(1, 2);
+	CMyVektor v_1(2);
+	v_1.set_component(0, 1);
+	v_1.set_component(1, 2);
 
-	//CMyVektor mult(2);
-	//mult = m_1 * v_1;
-	//mult.print_vector(mult);
+	CMyVektor mult(2);
+	mult = m_1 * v_1;
+	mult.print_vector(mult);*/
 
 	////Beispiel Aufgabe 2
 	/*CMyVektor x(4);
@@ -59,13 +59,36 @@ int main() {
 	j_matrix.print_matrix(j_matrix);
 */
 	//aufgabe 3
-	CMyVektor x(2);
+	/*CMyektor x(2);
 	x.set_component(0, 1);
 	x.set_component(1, 1);
 
 	newton_verfahren(x, f_2);
+*/
 
+	//Mult test
 
+	CMyMatrix mult(2, 3);
+	mult.set_component(0, 0, 4);
+	mult.set_component(0, 1, 3);
+	mult.set_component(0, 2, 2);
+	mult.set_component(1, 0, 1);
+	mult.set_component(1, 1, 2);
+	mult.set_component(1, 2, 3);
+
+	std::cout << "Matrix Vektor Multiplikation: " << std::endl;
+	mult.print_matrix(mult);
+	std::cout << "mal" << std::endl;
+
+	CMyVektor mult_v(3);
+	mult_v.set_component(0, 2);
+	mult_v.set_component(1, 3);
+	mult_v.set_component(2, 4);
+
+	mult_v.print_vector(mult_v);
+
+	std::cout << "=" << std::endl;
+	mult_v.print_vector(mult*mult_v);
 
 	return 0;
 	system("PAUSE");

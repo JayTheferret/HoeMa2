@@ -67,7 +67,20 @@ CMyMatrix CMyMatrix::invers(CMyMatrix matrix)
 
 CMyVektor operator*(CMyMatrix A, CMyVektor x)
 {
-	double a = A.get_component(0, 0);
+	CMyVektor result(A.get_dimension_m()); //resultat ist Vektor mit Dimension = zeilen Matrix
+	double temp = 0;
+
+	for (int i = 0; i < A.get_dimension_m(); i++) { //pro zeile der Matrix
+		for (int j = 0; j < A.get_dimension_n(); j++) { //jede Zahl durchgehen
+			temp += A.get_component(i, j)*x.get_component(j); //Zahl in Matrix*Zahl im Vektor + nächste zahl
+		}
+		result.set_component(i, temp);
+		temp = 0; // temp zuruecksetzen
+	}
+
+	return result;
+
+	/*double a = A.get_component(0, 0);
 	double b = A.get_component(0, 1);
 	double c = A.get_component(1, 0);
 	double d = A.get_component(1, 1);
@@ -80,7 +93,7 @@ CMyVektor operator*(CMyMatrix A, CMyVektor x)
 	result.set_component(0, (a*e) + (b*f));
 	result.set_component(1, (c*e) + (d*f));
 
-	return result;
+	return result;*/
 }
 
 CMyMatrix jacobi(CMyVektor x, CMyVektor(*funktion)(CMyVektor x))
