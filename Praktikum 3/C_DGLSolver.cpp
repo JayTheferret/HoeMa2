@@ -81,23 +81,42 @@ CMyVektor C_DGLSolver::heun(CMyVektor y_start, double x_start, double x_end, dou
 	CMyVektor y = y_start;
 	CMyVektor y_strich(y_start.get_dimension());
 
+	CMyVektor y_test = y;
+	CMyVektor y_test_strich = y_strich;
+	CMyVektor y_strich_mittel = y_strich;
+
 	for (int i = 0; i < steps; i++) {
 
-		std::cout << "Schritt " << i << ":" << std::endl
-			<< "     x = " << x_start << std::endl
-			<< "     y = ";
-		y_start.print_vector(y_start);
-		std::cout << "     y'_orig = ";;
-		//print
-		std::cout << std::endl
-			<< "     y_Test = ";
-		//print
-		std::cout << "     y'_Test = ";
-		//print
-		std::cout << std::endl
-			<< "y'_Mittel = ";
-		//print
-		std::cout << std::endl;
+		y_strich = ableitungen(y, x_start);
+
+		std::cout	<< "Schritt " << i << ":" << std::endl
+					<< "     x = " << x_start << std::endl
+					<< "     y = ";
+		y_start.print_vector(y);
+		std::cout	<< "     y'_orig = ";;
+		y_strich.print_vector(y_strich);
+		std::cout	<< std::endl;
+
+		y_test = y + h * y_strich;
+
+		std::cout	<< "     y_Test = ";
+		y_test.print_vector(y_test);
+
+		x_start += h;
+
+		y_test_strich = ableitungen(y_test, x_start);
+
+		std::cout	<< "     y'_Test = ";
+		y_test_strich.print_vector(y_test_strich);
+
+		y_strich_mittel = 0.5*(y_strich + y_test_strich); //1/2*(f(x0,y(x0))+f(x1,y1))
+
+		std::cout	<< std::endl
+					<< "     y'_Mittel = ";
+		y_strich_mittel.print_vector(y_strich_mittel);
+		std::cout	<< std::endl;
+
+		y = y + h * y_strich_mittel;
 	}
 
 	return y_start;
