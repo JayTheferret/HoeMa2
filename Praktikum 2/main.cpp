@@ -48,7 +48,6 @@ int main() {
 	std::cout << "=" << std::endl;
 	mult_v.print_vector(mult*mult_v);*/
 
-
 	//-------------------------------------------------------------------------------------------
 	//Aufgabe 2
 
@@ -64,11 +63,11 @@ int main() {
 	//-------------------------------------------------------------------------------------------
 	//Aufgabe 3
 
-	//CMyVektor x(2); //startwert
-	//x.set_component(0, 1);
-	//x.set_component(1, 1); 
+	CMyVektor x(2); //startwert
+	x.set_component(0, 1);
+	x.set_component(1, 1); 
 
-	//newton_verfahren(x, f_2);
+	newton_verfahren(x, f_2);
 
 	//-------------------------------------------------------------------------------------------
 	

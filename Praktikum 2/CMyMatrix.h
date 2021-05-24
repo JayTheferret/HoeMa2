@@ -34,4 +34,4 @@ CMyVektor f_1(CMyVektor x); //a2 funktion
 CMyVektor newton_verfahren(CMyVektor x,CMyVektor(*funktion)(CMyVektor x));
 CMyVektor f_2(CMyVektor x_vec); //Aufgabe 3
 
-CMyVektor f_prak(CMyVektor x_vec);
+//CMyVektor f_prak(CMyVektor x_vec);
