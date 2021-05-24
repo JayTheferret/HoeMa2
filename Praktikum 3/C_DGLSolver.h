@@ -31,4 +31,4 @@ public:
 CMyVektor f_DGL(CMyVektor y, double x);
 double f_DGL_3terO(CMyVektor y,double x);
 
-void Abweichung(CMyVektor y_start, double x_start,double x_end);
+//void Abweichung(CMyVektor y_start, double x_start,double x_end);

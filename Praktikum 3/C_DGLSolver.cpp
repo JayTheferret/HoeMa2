@@ -119,6 +119,11 @@ CMyVektor C_DGLSolver::heun(CMyVektor y_start, double x_start, double x_end, dou
 		y = y + h * y_strich_mittel;
 	}
 
+	std::cout << "Ende bei" << std::endl
+		<< "     x = " << x_start << std::endl
+		<< "     y = ";
+	y.print_vector(y);
+
 	return y;
 }
 
@@ -184,19 +189,15 @@ double f_DGL_3terO(CMyVektor y, double x)
 	return (2*x*y2*y3)+(2*(y1*y1)*y2); //2*x*y'*y''+2*y^2*y'
 }
 
-void Abweichung(CMyVektor y_start, double x_start, double x_end)
-{
-	int steps = 10;
-	double diff = 0;
-	double exact_result = 1 / x_start;
-
-	CMyVektor diff_v(y_start.get_dimension());
-
-	for (int i = 0; i < 4; i++) {
-		std::cout << "Abweichung bei Euler bei " << steps << " Schritten: " << diff << std::endl;
-
-
-		steps = steps * 10;
-	}
-	
-}
+//void Abweichung(CMyVektor y_start, double x_start, double x_end)
+//{
+//	double exact_result = 0.5;
+//	C_DGLSolver solver(f_DGL_3terO);
+//
+//	for (int i = 10; i < 1000; i*=10) {
+//		std::cout	<< "Abweichung bei Euler bei " << i << " Schritten: " << solver.euler(y_start,x_start,x_end,i)[0] - exact_result << std::endl
+//					<< "Abweichung bei Heun bei " << i << " Schritten: " << std::endl;
+//
+//	}
+//	
+//}
