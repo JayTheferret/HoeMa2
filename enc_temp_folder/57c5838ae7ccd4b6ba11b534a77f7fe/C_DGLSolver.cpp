@@ -18,7 +18,7 @@ CMyVektor C_DGLSolver::ableitungen(CMyVektor y, double x)
 	for (int i = 0; i < y_d-1; i++) {
 			DGL.set_component(i, y.get_component(i + 1));
 	}
-	DGL.set_component(y.get_dimension()-1, f_DGL_nterOrdnung(y, x));
+	DGL.set_component(y.get_dimension()-1, f_DGL_nterOrdnung(y, x)); //?
 
 	return DGL;
 }

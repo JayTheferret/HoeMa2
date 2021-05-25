@@ -72,6 +72,8 @@ int main() {
 
 				//y(2) = 0.5 (1/x)
 			}
+
+			//solver.euler_oa(y_start, 1, 2, 10).print_vector(solver.euler_oa(y_start, 1, 2, 10));
 			break;
 		}
 	}
