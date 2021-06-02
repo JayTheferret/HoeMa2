@@ -23,7 +23,7 @@ public:
 	CMyVektor euler(CMyVektor y_start, double x_start, double x_end, double steps);
 	CMyVektor heun(CMyVektor y_start, double x_start, double x_end, double steps);
 
-	CMyVektor euler_oa(CMyVektor y_start, double x_start, double x_end, double steps);
+	CMyVektor euler_oa(CMyVektor y_start, double x_start, double x_end, double steps); //statt extra funktion -> boolean für ausgabe
 	CMyVektor heun_oa(CMyVektor y_start, double x_start, double x_end, double steps);
 
 };
