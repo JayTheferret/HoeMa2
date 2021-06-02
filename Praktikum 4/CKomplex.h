@@ -1,6 +1,6 @@
 #pragma once
-#include "vector"
-
+#include <fstream>
+#include <vector>
 #include <cmath>;
 
 class CKomplex {
@@ -23,3 +23,4 @@ public:
 CKomplex operator+(CKomplex a, CKomplex b); //komplexe add
 CKomplex operator*(CKomplex a, CKomplex b); //komplexe mult
 CKomplex operator*(CKomplex a, double b); //double ,mit komplex
+
