@@ -16,8 +16,6 @@ public:
 	CKomplex(double a, double b); //a+bj
 	CKomplex(double phi);//e^(j*phi)
 
-	
-
 	double re(); //return re
 	double im(); //return im
 	double abs(); //return betrag der komplexen zahl
