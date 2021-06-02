@@ -10,7 +10,6 @@ private:
 	double j_re; //realteil
 	double i_im; //imaginaerteil
 
-
 public:
 
 	CKomplex(double a, double b); //a+bj
