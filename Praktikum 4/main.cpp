@@ -84,7 +84,7 @@ int main(){
 
 		case 4: {
 
-			std::vector<CKomplex> values = werte_einlesen("hoever_test.txt");
+			std::vector<CKomplex> values = werte_einlesen("Daten_original.txt");
 			werte_ausgeben("test1.txt", values, 10);
 		}
 
