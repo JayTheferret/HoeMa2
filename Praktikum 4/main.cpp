@@ -11,6 +11,7 @@ int main(){
 	std::cout << "2- Test Multiplikation zweier komplexer Zahlen" << std::endl;
 	std::cout << "3- Test Multiplikation komplexer Zahl mit double" << std::endl;
 	std::cout << "4- Aufgabe 2 -> Test von ein und Ausgabe (nur werte >= 10)" << std::endl;
+	std::cout << "5- maximale Abweichung" << std::endl;
 	
 	CKomplex komp1(2, 3);
 	CKomplex komp2(4, 1);
@@ -88,8 +89,27 @@ int main(){
 			werte_ausgeben("test1.txt", values, 10);
 		}
 
+		case 5: {
+			
+			//for (double epsilon = 0.001; epsilon < 2; epsilon *= 10) {}
+
+				std::vector<CKomplex> values_orig = werte_einlesen("Daten_original.txt");
+				std::vector<CKomplex> values_ft = fourier_tf(values_orig, false);
+
+				werte_ausgeben("Daten_fourier.txt", values_ft, 1.0);
+
+				std::vector<CKomplex> values_ft_invers = fourier_tf(values_ft, true);
+				werte_ausgeben("Daten_fourier_invers.txt", values_ft_invers, 1.0);
+
+				std::cout << "Maximale Abweichung bei epsilon = ^1: ";
+
+				for (int i = 0; i < values_orig.size(); i++) {
+			
+				}
+			}
 		}
 	}
+	
 
 	system("PAUSE");
 	return 0;

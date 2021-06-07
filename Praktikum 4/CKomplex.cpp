@@ -79,7 +79,8 @@ std::vector<CKomplex> fourier_tf(std::vector<CKomplex> a, bool invers)
 		for (int k = 0; k < N; k++) { //k= 0 N-1 -> k<N
 			temp = temp + a[k] * CKomplex(dir*((2 * pi*k*n) / N)); //f(k)*e^(-/+j*(2pikn/N))
 		}
-		result[n] = 1 / sqrt(N)*temp; //1/wurzel aus N * temp
+		//result.push_back(1 / sqrt(N)*temp);
+		result[n] = (1 / sqrt(N))*temp; //1/wurzel aus N * temp
 	}
 
 	return result;
