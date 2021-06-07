@@ -11,8 +11,8 @@ CKomplex::CKomplex(double re, double im)
 
 CKomplex::CKomplex(double phi)
 {
-	i_im = sin(phi);
 	j_re = cos(phi);
+	i_im = sin(phi);
 }
 
 double CKomplex::re()
@@ -59,6 +59,30 @@ CKomplex operator*(CKomplex a, CKomplex b)
 CKomplex operator*(CKomplex a, double b)
 {
 	return CKomplex(a.re() * b, a.im() * b);
+}
+
+std::vector<CKomplex> fourier_tf(std::vector<CKomplex> a, bool invers)
+{
+
+	const long double pi = 3.14159265358979323846;
+
+	int N = a.size(); // -> anzahl der werte in vektor
+	std::vector<CKomplex> result(N);
+
+	int dir = 0;
+	if (!invers) { dir = -1; }//fourier transformation
+	else { dir = 1; }//inverse -> rueck tranformation
+
+	for (int n = 0; n < N; n++) { //komplette textdatei werte durchlaufen
+		CKomplex temp(0, 0);
+
+		for (int k = 0; k < N; k++) { //k= 0 N-1 -> k<N
+			temp = temp + a[k] * CKomplex(dir*((2 * pi*k*n) / N)); //f(k)*e^(-/+j*(2pikn/N))
+		}
+		result[n] = 1 / sqrt(N)*temp; //1/wurzel aus N * temp
+	}
+
+	return result;
 }
 
 

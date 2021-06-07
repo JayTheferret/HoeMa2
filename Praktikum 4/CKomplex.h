@@ -30,4 +30,16 @@ CKomplex operator+(CKomplex a, CKomplex b); //komplexe add
 CKomplex operator*(CKomplex a, CKomplex b); //komplexe mult
 CKomplex operator*(CKomplex a, double b); //double ,mit komplex
 
+//Aufgabe 3
+
+std::vector<CKomplex> fourier_tf(std::vector<CKomplex> a, bool invers);
+
+//---------------------------------------------------------------
+// --------------Hoeversches Funktionsgebiet---------------------
+//---------------------------------------------------------------
+
+std::vector<CKomplex>  werte_einlesen(const char *dateiname);
+void werte_ausgeben(const char *dateiname, std::vector<CKomplex> werte, double epsilon);
+
+
 
