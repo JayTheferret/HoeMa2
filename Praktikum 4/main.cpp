@@ -68,8 +68,6 @@ int main(){
 		}
 	}
 
-	auto values = werte_einlesen("Hoever_testdatei.txt");
-
 	
 
 }
