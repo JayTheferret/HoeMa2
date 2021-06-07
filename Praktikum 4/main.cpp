@@ -1,5 +1,6 @@
 #include <iostream>
 #include "CKomplex.h"
+#include "CKomplex.cpp"
 
 int main(){
 
@@ -66,6 +67,8 @@ int main(){
 			break;
 		}
 	}
+
+	auto values = werte_einlesen("Hoever_testdatei.txt");
 
 	
 
