@@ -2,10 +2,10 @@
 
 using namespace std;
 
-CKomplex::CKomplex(double a, double b)
+CKomplex::CKomplex(double re, double im)
 {
-	i_im = a;
-	j_re = b;
+	j_re = re;
+	i_im = im;
 
 }
 
@@ -30,21 +30,35 @@ double CKomplex::abs()
 	return sqrt(j_re*j_re+i_im*i_im);
 }
 
+void print_komplex(CKomplex a)
+{
+	if (a.im() == 1) {
+		std::cout << a.re() << " + " << "i";
+		return;
+	}
+	std::cout << a.re() << " + " << a.im() << "i";
+}
+
 CKomplex operator+(CKomplex a, CKomplex b)
 {
-	return (a.re() + b.re(), a.im()+b.im());
+	return CKomplex(a.re() + b.re(), a.im()+b.im());
 }
 
 CKomplex operator*(CKomplex a, CKomplex b)
 {
-	//z1*z2 = (x1*x2-y1*y2)+(x1*y2+x2*y1)*i
+	//(x1+y1i) * (x2+y2i)
+	// = x1*x2 + x1*y2i + x2*y1i + y1*y2i^2
+	// => i^2 = -1
+	// x1*x2 + x1*y2i + x2*y1i -y1*y2
+	// => zusammenfassen in real und imag teil:
+	// = (x1*x2-y1*y2)+(x1*y2+x2*y1)*i
 
-	return (a.re() * b.re()- a.im() * b.im(), a.re() * b.im() + b.re() * a.im());
+	return CKomplex(a.re() * b.re() - a.im() * b.im(), a.re() * b.im() + b.re() * a.im());
 }
 
 CKomplex operator*(CKomplex a, double b)
 {
-	return (a.re() * b, a.im() * b);
+	return CKomplex(a.re() * b, a.im() * b);
 }
 
 
