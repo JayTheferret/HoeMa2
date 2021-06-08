@@ -46,7 +46,7 @@ CKomplex operator+(CKomplex a, CKomplex b)
 
 CKomplex operator*(CKomplex a, CKomplex b)
 {
-	//(x1+y1i) * (x2+y2i)
+	// (x1+y1i) * (x2+y2i)
 	// = x1*x2 + x1*y2i + x2*y1i + y1*y2i^2
 	// => i^2 = -1
 	// x1*x2 + x1*y2i + x2*y1i -y1*y2
@@ -77,9 +77,10 @@ std::vector<CKomplex> fourier_tf(std::vector<CKomplex> a, bool invers)
 		CKomplex temp(0, 0);
 
 		for (int k = 0; k < N; k++) { //k= 0 N-1 -> k<N
-			temp = temp + a[k] * CKomplex(dir*((2 * pi*k*n) / N)); //f(k)*e^(-/+j*(2pikn/N))
+			temp = temp + a[k] * CKomplex(dir*((2 * pi * k * n) / double(N))); //f(k)*e^(-/+j*(2pikn/N))
 		}
 		//result.push_back(1 / sqrt(N)*temp);
+		//result[n] = (1 / N)*temp; //1/wurzel aus N * temp
 		result[n] = (1 / sqrt(N))*temp; //1/wurzel aus N * temp
 	}
 
