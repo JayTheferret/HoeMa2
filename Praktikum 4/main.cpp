@@ -103,7 +103,7 @@ int main(){
 			werte_ausgeben("FT.txt", values_ft,-1.0);
 			std::vector<CKomplex> values_ft_invers = fourier_tf(werte_einlesen("FT.txt"), true);
 			//werte_ausgeben("FTinvers.txt", values_ft_invers, -1.0);
-			std::cout << "Maximale Abweichung bei Epsilon = -1.0: " << difference(values_orig, values_ft_invers) << std::endl;
+			std::cout << "Maximale Abweichung bei Standart-Epsilon: ca. " << difference(values_orig, values_ft_invers) << std::endl;
 
 			for (double epsilon = 0.001; epsilon < 2; epsilon *= 10) {
 
@@ -170,11 +170,6 @@ int main(){
 			c1 = fourier_tf(c1, true);
 			print_komplex(c1[2]);
 			std::cout << std::endl;
-
-
-
-
-
 
 			break;
 		}
