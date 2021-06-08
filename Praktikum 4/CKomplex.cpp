@@ -27,7 +27,7 @@ double CKomplex::im()
 
 double CKomplex::abs()
 {
-	return sqrt(j_re*j_re+i_im*i_im);
+	return sqrt((j_re*j_re)+(i_im*i_im));
 }
 
 void print_komplex(CKomplex a)
@@ -53,12 +53,22 @@ CKomplex operator*(CKomplex a, CKomplex b)
 	// => zusammenfassen in real und imag teil:
 	// = (x1*x2-y1*y2)+(x1*y2+x2*y1)*i
 
-	return CKomplex(a.re() * b.re() - a.im() * b.im(), a.re() * b.im() + b.re() * a.im());
+	return CKomplex((a.re() * b.re()) - (a.im() * b.im()), (a.re() * b.im()) + (b.re() * a.im()));
 }
 
 CKomplex operator*(CKomplex a, double b)
 {
 	return CKomplex(a.re() * b, a.im() * b);
+}
+
+CKomplex operator*(double b, CKomplex a)
+{
+	return CKomplex(a.re() * b, a.im() * b);
+}
+
+CKomplex operator-(CKomplex a, CKomplex b) 
+{
+	return CKomplex(a.re() - b.re(), a.im() - b.im());
 }
 
 std::vector<CKomplex> fourier_tf(std::vector<CKomplex> a, bool invers)
@@ -69,22 +79,53 @@ std::vector<CKomplex> fourier_tf(std::vector<CKomplex> a, bool invers)
 	int N = a.size(); // -> anzahl der werte in vektor
 	std::vector<CKomplex> result(N);
 
-	int dir = 0;
+	int dir = 0; //hin oder zurück
 	if (!invers) { dir = -1; }//fourier transformation
 	else { dir = 1; }//inverse -> rueck tranformation
 
-	for (int n = 0; n < N; n++) { //komplette textdatei werte durchlaufen
-		CKomplex temp(0, 0);
+	CKomplex temp(0, 0);
 
-		for (int k = 0; k < N; k++) { //k= 0 N-1 -> k<N
-			temp = temp + a[k] * CKomplex(dir*((2 * pi * k * n) / double(N))); //f(k)*e^(-/+j*(2pikn/N))
+	for (int n = 0; n < N; n++) { //komplette textdatei werte durchlaufen
+		temp = CKomplex(0, 0); //zurücksetzen
+
+		for (int k = 0; k <N ; k++) { //k= 0 N-1 -> k<N
+			temp = temp + (a[k] * CKomplex((dir*(2 * pi * k * n)) / N)); //f(k)*e^(-/+j*(2pikn/N))
 		}
 		//result.push_back(1 / sqrt(N)*temp);
 		//result[n] = (1 / N)*temp; //1/wurzel aus N * temp
-		result[n] = (1 / sqrt(N))*temp; //1/wurzel aus N * temp
+		result[n] = (1.0 / sqrt(N)) * temp; //1/wurzel aus N * temp
 	}
-
 	return result;
+}
+
+double difference(vector<CKomplex> original, vector<CKomplex> invers)
+{
+	//double max_diff = 0; //groesste Abweichung
+	//double temp = 0;
+
+	//for (int i = 0; i < original.size(); i++) { //alle werte vergleichen
+
+	//	temp = invers[i].abs() - original[i].abs();
+
+	//	if (max_diff < temp) {
+	//		max_diff = temp;
+	//	}
+	//}
+	//
+	//return max_diff;
+
+	double temp;
+	double max_diff = 0;
+
+	for (int i = 0; i < original.size(); i++) { //alle zeilen durchgehen
+
+		temp = (original[i] - invers[i]).abs(); //unterschied der aktuellen
+		
+		if (max_diff < temp) { //wenn unterschied größer dann austauschen
+			max_diff = temp;
+		}
+	}
+	return max_diff;
 }
 
 
