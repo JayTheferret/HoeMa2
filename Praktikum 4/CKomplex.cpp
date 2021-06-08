@@ -100,19 +100,6 @@ std::vector<CKomplex> fourier_tf(std::vector<CKomplex> a, bool invers)
 
 double difference(vector<CKomplex> original, vector<CKomplex> invers)
 {
-	//double max_diff = 0; //groesste Abweichung
-	//double temp = 0;
-
-	//for (int i = 0; i < original.size(); i++) { //alle werte vergleichen
-
-	//	temp = invers[i].abs() - original[i].abs();
-
-	//	if (max_diff < temp) {
-	//		max_diff = temp;
-	//	}
-	//}
-	//
-	//return max_diff;
 
 	double temp;
 	double max_diff = 0;

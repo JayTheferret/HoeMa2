@@ -6,13 +6,16 @@
 int main(){
 
 	int input = 0;
-
-	std::cout << "1- Test Addition zweier komplexer Zahlen" << std::endl;
-	std::cout << "2- Test Multiplikation zweier komplexer Zahlen" << std::endl;
-	std::cout << "3- Test Multiplikation komplexer Zahl mit double" << std::endl;
-	std::cout << "4- Aufgabe 2 -> Test von ein und Ausgabe (nur werte >= 10)" << std::endl;
-	std::cout << "5- maximale Abweichung" << std::endl;
-	std::cout << "7- Praktikumstest A1" << std::endl;
+	std::cout << "\t --------------------------------------------------------------" << std::endl;
+	std::cout << "\t | 1- Test Addition zweier komplexer Zahlen                   |" << std::endl;
+	std::cout << "\t | 2- Test Multiplikation zweier komplexer Zahlen             |" << std::endl;
+	std::cout << "\t | 3- Test Multiplikation komplexer Zahl mit double           |" << std::endl;
+	std::cout << "\t | 4- Aufgabe 2 -> Test von ein und Ausgabe (nur werte >= 10) |" << std::endl;
+	std::cout << "\t | 5- Ausgabe der maximalen Abweichung                        |" << std::endl;
+	std::cout << "\t | 6- Test Ausgabe von eingelesenem Vektor                    |" << std::endl;
+	std::cout << "\t | 7- Praktikumstest A1                                       |" << std::endl;
+	std::cout << "\t --------------------------------------------------------------" << std::endl;
+	std::cout << std::endl;
 	
 	CKomplex komp1(2, 3);
 	CKomplex komp2(4, 1);
@@ -88,6 +91,8 @@ int main(){
 
 			std::vector<CKomplex> values = werte_einlesen("Daten_original.txt");
 			werte_ausgeben("test1.txt", values, 10);
+
+			break;
 		}
 
 		case 5: {
@@ -97,14 +102,14 @@ int main(){
 
 			werte_ausgeben("FT.txt", values_ft,-1.0);
 			std::vector<CKomplex> values_ft_invers = fourier_tf(werte_einlesen("FT.txt"), true);
-			werte_ausgeben("FTinvers.txt", values_ft_invers, -1.0);
+			//werte_ausgeben("FTinvers.txt", values_ft_invers, -1.0);
 			std::cout << "Maximale Abweichung bei Epsilon = -1.0: " << difference(values_orig, values_ft_invers) << std::endl;
 
 			for (double epsilon = 0.001; epsilon < 2; epsilon *= 10) {
 
 				werte_ausgeben("FT.txt", values_ft, epsilon);
 				std::vector<CKomplex> values_ft_invers = fourier_tf(werte_einlesen("FT.txt"), true);
-				werte_ausgeben("FTinvers.txt", values_ft_invers, epsilon);
+				//werte_ausgeben("FTinvers.txt", values_ft_invers, epsilon);
 				std::cout << "Maximale Abweichung bei Epsilon = " << epsilon << ": " << difference(values_orig, values_ft_invers) << std::endl;
 			}
 				break;
@@ -175,10 +180,7 @@ int main(){
 		}
 
 		}
-
-		
 	}
-	
 
 	system("PAUSE");
 	return 0;
