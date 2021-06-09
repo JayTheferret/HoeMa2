@@ -15,7 +15,7 @@ public:
 	CKomplex() = default;
 
 	CKomplex(double re, double im); //a+bj
-	CKomplex(double phi);//e^(j*phi)
+	CKomplex(double phi);//e^(j*phi) -> r*cos(phi)/r*sin(phi)
 
 	double re(); //return re
 	double im(); //return im
