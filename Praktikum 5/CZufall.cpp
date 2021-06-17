@@ -35,11 +35,12 @@ std::vector<int> CZufall::test_falsch(int a, int b, int N)
 	std::vector<int> result;
 	result.resize(b + 1 - a); //nur Stellen a+1 etc wichtig
 
+	initialisiere(time(NULL));
 	for (int i = 0; i < N; i++) {
 
-		initialisiere(time(NULL));
+		
 
-		result.at(wert(a, b) - a); // wie oft a, a+1 ...,b auftreten
+		++result.at(wert(a, b) - a); // wie oft a, a+1 ...,b auftreten
 	}
 
 	return result;

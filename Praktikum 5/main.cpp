@@ -15,98 +15,118 @@ int main() {
 
 		switch (input) {
 
-			case 1: {
+		case 1: {
 
-				std::cout << "Test von Wert mit a = 1 und b = 10:" << std::endl;
+			std::cout << "Test von Wert mit a = 1 und b = 10:" << std::endl;
 
-				int b = 10;
-				int a = 1;
+			int b = 10;
+			int a = 1;
 
-				std::cout << "[";
-				for (int i = 0; i < 20; i++) {
-					std::cout << rand() % (b + 1) + a << " ";	
+			std::cout << "[";
+			for (int i = 0; i < 20; i++) {
+				std::cout << rand() % (b + 1) + a << " ";
+			}
+			std::cout << "]";
+
+			break;
+		}
+
+		case 2: {
+
+			int a = 3;
+			int b = 7;
+			int s = 0;
+
+			CZufall z;
+
+			std::cout << "Verteilung von 10000 Zahlen, von " << a << " bis " << b << std::endl;
+			std::cout << "\t mit s = " << s << std::endl;
+
+			//z.initialisiere(s);
+
+			for (int j = 0; j < 4; j++) {
+				std::cout << "Durchlauf: " << j + 1 << std::endl;
+				z.initialisiere(s);
+				std::vector<int> res = z.test(a, b, 10000);
+
+				for (int i = 0; i < res.size(); i++) {
+					std::cout << "\t  " << a + i << ": " << res.at(i);
 				}
-				std::cout << "]";
+				std::cout << std::endl;
+			}
+			break;
+		}
 
-				break;
+		case 3: {
+
+			int a = 3;
+			int b = 7;
+
+			CZufall z;
+
+			std::cout << "Verteilung von 10000 Zahlen, von " << a << " bis " << b << std::endl;
+
+			int s[4] = { 1,4,8,3 };
+
+			for (int i = 0; i < 4; i++) {
+				std::cout << "\t mit s = " << s[i] << std::endl;
+				z.initialisiere(s[i]);
+				std::vector<int> res = z.test(a, b, 10000);
+
+				for (int j = 0; j < res.size(); j++) {
+					std::cout << "\t  " << a + j << ": " << res.at(j);
+				}
+				std::cout << std::endl;
 			}
 
-			case 2: {
+			break;
+		}
 
-				int a = 3;
-				int b = 7;
-				int s = 0;
+		case 4: {
 
-				CZufall z;
+			int a = 3;
+			int b = 7;
+			int s = time(NULL);
 
-				std::cout << "Verteilung von 10000 Zahlen, von " << a << " bis " << b << std::endl;
-				std::cout << "\t mit s = " << s << std::endl;
+			CZufall z;
 
-				//z.initialisiere(s);
+			std::cout << "Verteilung von 10000 Zahlen, von " << a << " bis " << b << std::endl;
+			std::cout << "\t mit s = " << s << std::endl;
 
-				for (int j = 0; j < 4; j++) {
-					std::cout << "Durchlauf: " << j+1 << std::endl;
-					z.initialisiere(s);
-					std::vector<int> res = z.test(a, b, 10000);
+			for (int j = 0; j < 4; j++) {
+				std::cout << "Durchlauf: " << j + 1 << std::endl;
+				z.initialisiere(s);
+				std::vector<int> res = z.test(a, b, 10000);
 
-					for (int i = 0; i < res.size(); i++) {
-						std::cout << "\t  " << a + i << ": " << res.at(i);
-					}
-					std::cout << std::endl;
+				for (int i = 0; i < res.size(); i++) {
+					std::cout << "\t  " << a + i << ": " << res.at(i);
 				}
-				break;
+				std::cout << std::endl;
+
 			}
+			break;
+		}
 
-			case 3: {
+		case 5: {
 
-				int a = 3;
-				int b = 7;
-				
-				CZufall z;
+			int a = 3;
+			int b = 7;
 
-				std::cout << "Verteilung von 10000 Zahlen, von " << a << " bis " << b << std::endl;
+			CZufall z;
 
-				int s[4] = { 1,4,8,3 };
+			std::cout << "Verteilung von 10000 Zahlen, von " << a << " bis " << b << std::endl;
+			std::cout << "\t mit test_falsch()" << std::endl;
 
-				for (int i = 0; i < 4; i++) {
-					std::cout << "\t mit s = " << s[i] << std::endl;
-					z.initialisiere(s[i]);
-					std::vector<int> res = z.test(a, b, 10000);
+			for (int j = 0; j < 4; j++) {
+				std::cout << "Durchlauf: " << j + 1 << std::endl;
+				std::vector<int> res = z.test_falsch(a, b, 10000);
 
-					for (int j = 0; j < res.size(); j++) {
-						std::cout << "\t  " << a + j << ": " << res.at(j);
-					}
-					std::cout << std::endl;
+				for (int i = 0; i < res.size(); i++) {
+					std::cout << "\t  " << a + i << ": " << res.at(i);
 				}
-
-				break;
+				std::cout << std::endl;
 			}
-
-			case 4: {
-
-				int a = 3;
-				int b = 7;
-				int s = time(NULL);
-
-				CZufall z;
-
-				std::cout << "Verteilung von 10000 Zahlen, von " << a << " bis " << b << std::endl;
-				std::cout << "\t mit s = " << s << std::endl;
-
-				//z.initialisiere(s);
-
-				for (int j = 0; j < 4; j++) {
-					std::cout << "Durchlauf: " << j + 1 << std::endl;
-					z.initialisiere(s);
-					std::vector<int> res = z.test(a, b, 10000);
-
-					for (int i = 0; i < res.size(); i++) {
-						std::cout << "\t  " << a + i << ": " << res.at(i);
-					}
-					std::cout << std::endl;
-				}
-				break;
-			}
+		}
 		}
 	}
 }
